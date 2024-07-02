@@ -1,0 +1,77 @@
+<!--去掉CSS只保留JS-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Album Slider</title>
+</head>
+<body>
+
+<!-- Album Slider Code Here -->
+<div class="lxj-album-slider" style="width: 361px; height: 200px; margin: auto; position: relative; background-color: #171717; display: flex; align-items: center; justify-content: center;">
+    <!-- 图片元素 -->
+    <img src="https://live.staticflickr.com/65535/53814418267_c48c171bd4_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53814418252_f0ab8349de_b.jpg" alt="描述图片" style="display: block; max-width: 100%; max-height: 100%;">
+
+    <img src="https://live.staticflickr.com/65535/53819322347_04c8fb0627_o.gif" alt="描述图片" style="display: block; max-width: 100%; max-height: 100%;"></iframe>
+    <!--<iframe src="https://embedr.flickr.com/photos/53815677144" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none; width: 100%; height: 100%;"></iframe>-->
+    <img src="https://live.staticflickr.com/65535/53815677129_be6468e63e_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53815787250_bcb0d61779_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <!-- More images -->
+    <img src="https://live.staticflickr.com/65535/53814418217_2e7910cdd3_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53815677094_1b591cb0e0_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53815342991_b0172c6f9b_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53815677104_8fe216ec6b_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53815342981_316f4219a0_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53815787220_760d49db02_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53814418187_cd1d24322a_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+    <img src="https://live.staticflickr.com/65535/53815585228_8a1dcff6d6_b.jpg" alt="描述图片" style="display: none; max-width: 100%; max-height: 100%;">
+
+    <!-- 导航按钮 -->
+    <div class="lxj-nav-buttons" style="position: absolute; width: 100%; top: 50%; transform: translateY(-50%); display: flex; justify-content: space-between; opacity: 0; transition: opacity 0.3s;">
+        <button id="prev" style="background-color: #171717; border: none; color: white; font-size: 24px; cursor: pointer; padding: 10px;">&#9664;</button>
+        <button id="next" style="background-color: #171717; border: none; color: white; font-size: 24px; cursor: pointer; padding: 10px;">&#9654;</button>
+    </div>
+    
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.lxj-album-slider');
+    const navButtons = document.querySelector('.lxj-nav-buttons');
+    const slides = document.querySelectorAll('img, iframe'); // Update selector if needed
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach(slide => {
+            slide.style.display = 'none'; // Hide all slides
+        });
+        slides[index].style.display = 'block'; // Show the active slide
+    }
+
+    slider.addEventListener('mouseenter', function() {
+        navButtons.style.opacity = 1;
+    });
+
+    slider.addEventListener('mouseleave', function() {
+        navButtons.style.opacity = 0;
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    });
+
+    showSlide(currentSlide); // Initialize by showing the first slide
+});
+</script>
+
+
+</body>
+</html>
